@@ -42,3 +42,14 @@ for (let i = 0; i < 100000; i++) {
 console.timeEnd('measure')
 // measure: 271.169921875ms
 ```
+
+## Development
+
+Test
+
+`yarn test`
+
+Build 
+
+`yarn build`
+
