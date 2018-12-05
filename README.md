@@ -53,3 +53,9 @@ Build
 
 `yarn build`
 
+## Toodo
+
+- [ ] Demo page
+- [ ] Solid performance test
+- [ ] Memoized cache for the same inputs 
+- [ ] CI test cov etc
