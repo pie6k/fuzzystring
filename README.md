@@ -8,12 +8,18 @@ Alows partial matching of requested string. Useful for searching large sets of d
 
 `yarn add fuzzystring`
 
-`import { fuzzyString } from 'fuzzystring';`
+```
+import { fuzzyString } from 'fuzzystring';
+
+// or if you prefer default 🤮exports
+import fuzzyString from 'fuzzystring';
+
+```
 
 ## Api
 
 ```ts
-fuzzyString('liolor','lorem ipsum dolor sit');
+fuzzyString('liolor', 'lorem ipsum dolor sit');
 
 // returns 
 [
