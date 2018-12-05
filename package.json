@@ -1,0 +1,17 @@
+{
+  "name": "fuzzystring",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest --watch",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.10",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.1"
+  }
+}
