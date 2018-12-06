@@ -3,13 +3,13 @@ import { fuzzyString, FuzzyMatchOptions } from './index';
 const fullPattern = 'lorem ipsum dolor';
 
 function resultsFor(input: string, options?: FuzzyMatchOptions) {
-  const matches = fuzzyString(input, fullPattern, options);
+  const match = fuzzyString(input, fullPattern, options);
 
-  if (!matches) {
+  if (!match) {
     return null;
   }
 
-  return matches.map((match) => match.content);
+  return match.parts.map((match) => match.content);
 }
 
 describe('fuzzyMatch', () => {
