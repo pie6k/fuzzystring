@@ -9,7 +9,7 @@ export interface FuzzyMatchOptions {
   truncateTooLongInput?: boolean;
 }
 
-export function fuzzyMatch(
+export function fuzzyString(
   input: string,
   stringToBeFound: string,
   { truncateTooLongInput }: FuzzyMatchOptions = {},
@@ -115,3 +115,5 @@ export function fuzzyMatch(
   // return everything we've got
   return matchParts;
 }
+
+export default fuzzyString;
