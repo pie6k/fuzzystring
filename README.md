@@ -51,6 +51,8 @@ console.timeEnd('measure');
 // measure: 271.169921875ms
 ```
 
+~200k ops/s [jsperf](https://jsperf.com/fuzzystring2)
+
 ## Development
 
 Test
