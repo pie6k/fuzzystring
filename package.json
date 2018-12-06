@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --watch",
-    "build": "tsc",
+    "build": "rimraf dist && tsc",
     "demo": "parcel demo/index.html",
     "demo:build": "rimraf demoBuild & parcel build demo/index.html -d demoBuild --no-source-maps",
     "demo:deploy": "yarn demo:build --public-url \"/fuzzystring\" && gh-pages -d demoBuild"

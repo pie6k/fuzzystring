@@ -9,5 +9,5 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react"
   },
-  "exclude": ["./node_modules/*", "./dist", "src/**/*.spec.ts"]
+  "exclude": ["./node_modules/*", "./dist", "./demo", "src/**/*.spec.ts"]
 }
