@@ -7,7 +7,9 @@
   "scripts": {
     "test": "jest --watch",
     "build": "tsc",
-    "demo": "parcel demo/index.html"
+    "demo": "parcel demo/index.html",
+    "demo:build": "rimraf demoBuild & parcel build demo/index.html -d demoBuild --no-source-maps",
+    "demo:deploy": "gh-pages -d demoBuild"
   },
   "devDependencies": {
     "@types/jest": "^23.3.10",
@@ -15,6 +17,7 @@
     "@types/react": "^16.7.13",
     "@types/react-dom": "^16.0.11",
     "@types/styled-components": "^4.1.3",
+    "gh-pages": "^2.0.1",
     "jest": "^23.6.0",
     "lodash": "^4.17.11",
     "parcel-bundler": "^1.10.3",
