@@ -7,6 +7,9 @@ Alows partial matching of requested string. Useful for searching large sets of d
 ## Demo
 [Click here for demo](https://pie6k.github.io/fuzzystring/)
 
+![screen recording 2018-12-05 at 21 35 33](https://user-images.githubusercontent.com/7311462/49559878-ed6f0a80-f8d5-11e8-8cf6-fd5734512f9f.gif)
+
+
 ## Install
 
 `yarn add fuzzystring`
