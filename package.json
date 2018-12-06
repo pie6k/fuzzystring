@@ -6,11 +6,22 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --watch",
-    "build": "tsc"
+    "build": "tsc",
+    "demo": "parcel demo/index.html"
   },
   "devDependencies": {
     "@types/jest": "^23.3.10",
+    "@types/lodash": "^4.14.119",
+    "@types/react": "^16.7.13",
+    "@types/react-dom": "^16.0.11",
+    "@types/styled-components": "^4.1.3",
     "jest": "^23.6.0",
+    "lodash": "^4.17.11",
+    "parcel-bundler": "^1.10.3",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "rimraf": "^2.6.2",
+    "styled-components": "^4.1.2",
     "ts-jest": "^23.10.5",
     "typescript": "^3.2.1"
   }

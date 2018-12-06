@@ -5,7 +5,9 @@
     "declaration": true,
     "outDir": "./dist",
     "strict": true,
-    "lib": ["es2015"]
+    "lib": ["es2015", "dom"],
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react"
   },
   "exclude": ["./node_modules/*", "./dist", "src/**/*.spec.ts"]
 }

@@ -1,19 +1,50 @@
-type MatchRoleType = 'input' | 'fuzzy' | 'suggestion';
+export type MatchRoleType = 'input' | 'fuzzy' | 'suggestion';
 
-interface FuzzyMatchData {
+export interface FuzzyMatchPart {
   content: string;
   type: MatchRoleType;
 }
 
+export interface FuzzyMatchData {
+  parts: FuzzyMatchPart[];
+  score: number;
+}
+
 export interface FuzzyMatchOptions {
   truncateTooLongInput?: boolean;
+  isCaseSesitive?: boolean;
+}
+
+function calculateFuzzyMatchPartsScore(fuzzyMatchParts: FuzzyMatchPart[]) {
+  const getRoleLength = (role: MatchRoleType) =>
+    fuzzyMatchParts
+      .filter((part) => part.type === role)
+      .map((part) => part.content)
+      .join('').length;
+
+  const fullLength = fuzzyMatchParts.map((part) => part.content).join('')
+    .length;
+  const fuzzyLength = getRoleLength('fuzzy');
+  const inputLength = getRoleLength('input');
+  const suggestionLength = getRoleLength('suggestion');
+
+  return (
+    (inputLength + fuzzyLength * 0.7 + suggestionLength * 0.9) / fullLength
+  );
+}
+
+function compareLetters(a: string, b: string, isCaseSensitive = false) {
+  if (isCaseSensitive) {
+    return a === b;
+  }
+  return a.toLowerCase() === b.toLowerCase();
 }
 
 export function fuzzyString(
   input: string,
   stringToBeFound: string,
-  { truncateTooLongInput }: FuzzyMatchOptions = {},
-): FuzzyMatchData[] | false {
+  { truncateTooLongInput, isCaseSesitive }: FuzzyMatchOptions = {},
+): FuzzyMatchData | false {
   // make some validation first
 
   // if input is longer than string to find, and we dont truncate it - it's incorrect
@@ -28,10 +59,13 @@ export function fuzzyString(
 
   // if input is the same as string to be found - we dont need to look for fuzzy match - return it as match
   if (input === stringToBeFound) {
-    return [{ content: input, type: 'input' }];
+    return {
+      parts: [{ content: input, type: 'input' }],
+      score: 1,
+    };
   }
 
-  const matchParts: FuzzyMatchData[] = [];
+  const matchParts: FuzzyMatchPart[] = [];
 
   const remainingInputLetters = input.split('');
 
@@ -70,8 +104,14 @@ export function fuzzyString(
       break;
     }
 
+    const isMatching = compareLetters(
+      anotherStringToBeFoundLetter,
+      inputLetterToMatch,
+      isCaseSesitive,
+    );
+
     // if input letter doesnt match - we'll go to the next letter to try again
-    if (anotherStringToBeFoundLetter !== inputLetterToMatch) {
+    if (!isMatching) {
       // add this letter to buffer of ommited letters
       ommitedLettersBuffer.push(anotherStringToBeFoundLetter);
       // in case we had something in matched letters buffer - clear it as matching letters run ended
@@ -111,9 +151,12 @@ export function fuzzyString(
   if (suggestionPart) {
     matchParts.push({ content: suggestionPart, type: 'suggestion' });
   }
+  const score = calculateFuzzyMatchPartsScore(matchParts);
 
-  // return everything we've got
-  return matchParts;
+  return {
+    score,
+    parts: matchParts,
+  };
 }
 
 export default fuzzyString;
